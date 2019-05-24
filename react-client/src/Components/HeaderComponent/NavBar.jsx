@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { AppBar, Toolbar, Typography, List, ListItem, ListItemText, Tooltip, IconButton } from '@material-ui/core';
-import { Home, AccountBox, ListAlt } from '@material-ui/icons'
+import { AppBar, Toolbar, Typography, List, ListItem, ListItemText, Tooltip, IconButton, withStyles } from '@material-ui/core';
+import { Home, AccountBox, ListAlt } from '@material-ui/icons';
+
+const styles = {
+    root: {
+        paddingBottom: '12px',
+    },
+    tooltip: {
+        fontSize: '1rem',
+    }
+};
 
 class NavBar extends Component {
     render() {
+        const { classes } = this.props;
         return (
             <AppBar color="primary" position="static">
-                <Toolbar>
+                <Toolbar classes={{ root: classes.root }}>
                     <Typography variant="title"
                         color="inherit"
                     >
@@ -17,7 +27,7 @@ class NavBar extends Component {
                         <ListItem component="div">
                             <ListItemText inset>
                                 <Typography color="inherit" variant="title">
-                                    <Tooltip title="Home">
+                                    <Tooltip title="Home" classes={{ tooltip: classes.tooltip }}>
                                         <IconButton color="inherit" aria-label="Home">
                                             <Home />
                                         </IconButton>
@@ -26,7 +36,7 @@ class NavBar extends Component {
                             </ListItemText>
                             <ListItemText inset>
                                 <Typography color="inherit" variant="title">
-                                    <Tooltip title="Resume">
+                                    <Tooltip title="Resume" classes={{ tooltip: classes.tooltip }}>
                                         <IconButton color="inherit" aria-label="Resume">
                                             <ListAlt />
                                         </IconButton>
@@ -35,7 +45,7 @@ class NavBar extends Component {
                             </ListItemText>
                             <ListItemText inset>
                                 <Typography color="inherit" variant="title">
-                                    <Tooltip title="Contact">
+                                    <Tooltip title="Contact" classes={{ tooltip: classes.tooltip }}>
                                         <IconButton color="inherit" aria-label="Contact">
                                             <AccountBox />
                                         </IconButton>
@@ -51,4 +61,4 @@ class NavBar extends Component {
         )
     }
 }
-export default NavBar;
+export default withStyles(styles)(NavBar);
